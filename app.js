@@ -248,7 +248,7 @@ function drawDest() {
 async function refineApproxPositions() {
   if (!G) return;
   const geocoder = new G.Geocoder();
-  const todo = LOTS.filter(l => l.approx && l.addr);
+  const todo = LOTS.filter(l => l.approx && l.addr && !l.nogeo);
   let changed = 0;
   for (const l of todo) {
     const ck = "geo1:" + l.key;
@@ -332,7 +332,7 @@ $("f").addEventListener("submit", async e => {
     const g = res.results[0];
     if (!g) throw 0;
     const p = g.geometry.location;
-    setDest(p.lat(), p.lng(), g.formatted_address.replace(/, ישראל$/, ""), !!g.partial_match);
+    setDest(p.lat(), p.lng(), v, !!g.partial_match);
   } catch (err) { st.textContent = "לא מצאתי את הכתובת. נסו ניסוח אחר או הקישו על המפה."; }
 });
 
