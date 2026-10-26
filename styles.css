@@ -61,6 +61,7 @@ details.more summary::-webkit-details-marker{display:none}
 .chk input{width:18px;height:18px;accent-color:var(--sign)}
 .status{font-size:13px;color:var(--muted);min-height:1.2em}
 main{display:grid;grid-template-columns:1fr}
+#map{height:56vh;height:56svh;min-height:320px;background:var(--soft)}
 .list{padding-block:14px 40px;display:flex;flex-direction:column;gap:10px}
 .list h2{font-family:var(--font-display);font-weight:400;font-size:18px;margin:0}
 .count{color:var(--muted);font-size:13.5px}
@@ -116,3 +117,8 @@ main{display:grid;grid-template-columns:1fr}
 .mapnote{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--muted);font-size:14px;line-height:1.6}
 #mapwrap{position:relative}
 .live{color:var(--good);font-weight:700}
+@media (max-width:520px){
+  .lot,#viewList .lot{grid-template-columns:auto 1fr}
+  .prices{grid-column:1/-1;justify-content:flex-start;gap:18px;padding-top:4px;border-top:1px solid var(--line);margin-top:4px}
+  .prices div{text-align:start}
+}
