@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>חניונים בתל אביב</title>
+<meta name="theme-color" content="#1c57b8">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Secular+One&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top">
+    <div class="psign" aria-hidden="true">P</div>
+    <div class="brand"><h1>חניונים בתל אביב</h1><small>אחוזות החוף · סנטרל פארק · פרטיים — מחיר לשעה ותעריף ערב</small></div>
+    <button class="iconbtn" id="themeBtn" type="button" aria-label="מצב תצוגה"></button>
+  </div>
+  <form class="search" id="f" autocomplete="off">
+    <div class="inbox"><input id="q" type="search" placeholder="כתובת יעד, למשל: אבן גבירול 30" aria-label="כתובת יעד" aria-autocomplete="list" aria-controls="sugg">
+      <ul id="sugg" role="listbox" hidden></ul></div>
+    <button class="btn" type="submit">חפש</button>
+  </form>
+  <div class="bar">
+    <div class="seg" role="group" aria-label="תצוגה">
+      <button type="button" id="vMap" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>מפה</button>
+      <button type="button" id="vList" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>רשימה</button>
+    </div>
+    <div class="sortbox"><label for="sort">מיון</label>
+      <select id="sort">
+        <option value="dist">מרחק מהיעד</option>
+        <option value="hour">מחיר לשעה</option>
+        <option value="eve">תעריף ערב/יום</option>
+        <option value="cap">מספר מקומות</option>
+        <option value="name">שם</option>
+      </select></div>
+  </div>
+  <div class="bar" role="group" aria-label="מפעיל">
+    <button class="chip" type="button" data-op="A" aria-pressed="true"><i class="dot" style="background:var(--ahuzot)"></i>אחוזות החוף <span class="n"></span></button>
+    <button class="chip" type="button" data-op="C" aria-pressed="true"><i class="dot" style="background:var(--cp)"></i>סנטרל פארק <span class="n"></span></button>
+    <button class="chip" type="button" data-op="P" aria-pressed="true"><i class="dot" style="background:var(--priv)"></i>פרטיים <span class="n"></span></button>
+  </div>
+  <details class="more" id="more"><summary><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>סינון מתקדם</summary>
+    <div class="fgrid">
+      <label for="maxHour">מחיר מקסימלי לשעה: <output id="maxHourO"></output><input type="range" id="maxHour" min="5" max="40" step="1" value="40"></label>
+      <label for="maxDist">מרחק מקסימלי מהיעד: <output id="maxDistO"></output><input type="range" id="maxDist" min="200" max="5000" step="100" value="5000"></label>
+      <label for="nameF">חיפוש לפי שם או רחוב<input type="search" id="nameF" placeholder="למשל: רוטשילד"></label>
+      <label class="chk"><input type="checkbox" id="appF">מחירי אפליקציית סנטרל פארק</label>
+      <label class="chk"><input type="checkbox" id="resF">הצג מחיר תושב ת״א (אחוזות החוף)</label>
+      <label class="chk"><input type="checkbox" id="eveF">רק חניונים עם תעריף ערב קבוע</label>
+      <label class="chk"><input type="checkbox" id="evF">רק עם עמדת טעינה לרכב חשמלי</label>
+      <label class="chk"><input type="checkbox" id="openF">רק פתוחים עכשיו (כשידוע)</label>
+    </div>
+  </details>
+  <div class="status" id="st" aria-live="polite"></div>
+</div></header>
+
+<main id="main" class="mapmode">
+  <div id="mapwrap"><div id="map" role="application" aria-label="מפת חניונים. הקשה על המפה קובעת יעד"></div></div>
+  <section class="list wrap" id="near" aria-label="חניונים קרובים"></section>
+  <section class="list wrap" id="viewList" aria-label="רשימת חניונים" hidden></section>
+</main>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
